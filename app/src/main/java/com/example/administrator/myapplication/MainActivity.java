@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,12 @@ public class MainActivity extends Activity {
             ActionBar actionBar = getActionBar();
             actionBar.setHomeButtonEnabled(false);
         }
+
+        Log.i(MainActivity.class.toString(), "=============================");
+
+        Log.d(MainActivity.class.toString(), "Haha , this is a DEBUG of MyAndroid. ");
+        Log.i(MainActivity.class.toString(), "Haha , this is a INFO of MyAndroid. ");
+        Log.w(MainActivity.class.toString(), "Haha , this is a WARNING of MyAndroid. ");
 
     }
 
