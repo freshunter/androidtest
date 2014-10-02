@@ -1,22 +1,38 @@
 package com.example.administrator.myapplication;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.administrator.myapplication.MESSAGE";
+    private TextView mTextView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        // Initialize member TextView so we can manipulate it later
+        mTextView = (TextView) findViewById(R.id.edit_message);
+
+        // Make sure we're running on Honeycomb or higher to use ActionBar APIs
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // For the main activity, make sure the app icon in the action bar
+            // does not behave as a button
+            ActionBar actionBar = getActionBar();
+            actionBar.setHomeButtonEnabled(false);
+        }
+
     }
 
 
@@ -61,5 +77,13 @@ public class MainActivity extends Activity {
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();  // Always call the superclass
+
+        // Stop method tracing that the activity started during onCreate()
+        android.os.Debug.stopMethodTracing();
     }
 }
